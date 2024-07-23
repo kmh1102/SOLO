@@ -79,7 +79,7 @@ class ConvModule(nn.Module):
                  conv_cfg=None,
                  norm_cfg=None,
                  activation='relu',
-                 inplace=True,
+                 inplace=False,
                  order=('conv', 'norm', 'act')):
         super(ConvModule, self).__init__()
         assert conv_cfg is None or isinstance(conv_cfg, dict)
@@ -141,7 +141,7 @@ class ConvModule(nn.Module):
                 raise ValueError('{} is currently not supported.'.format(
                     self.activation))
             if self.activation == 'relu':
-                self.activate = nn.ReLU(inplace=inplace)
+                self.activate = nn.ReLU(inplace=False)
 
         # Use msra init by default
         self.init_weights()

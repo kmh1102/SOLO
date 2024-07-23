@@ -293,7 +293,7 @@ class HRNet(nn.Module):
             bias=False)
 
         self.add_module(self.norm2_name, norm2)
-        self.relu = nn.ReLU(inplace=True)
+        self.relu = nn.ReLU(inplace=False)
 
         # stage 1
         self.stage1_cfg = self.extra['stage1']
@@ -370,7 +370,7 @@ class HRNet(nn.Module):
                                 bias=False),
                             build_norm_layer(self.norm_cfg,
                                              num_channels_cur_layer[i])[1],
-                            nn.ReLU(inplace=True)))
+                            nn.ReLU(inplace=False)))
                 else:
                     transition_layers.append(None)
             else:
@@ -390,7 +390,7 @@ class HRNet(nn.Module):
                                 padding=1,
                                 bias=False),
                             build_norm_layer(self.norm_cfg, out_channels)[1],
-                            nn.ReLU(inplace=True)))
+                            nn.ReLU(inplace=False)))
                 transition_layers.append(nn.Sequential(*conv_downsamples))
 
         return nn.ModuleList(transition_layers)

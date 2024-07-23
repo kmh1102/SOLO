@@ -174,14 +174,14 @@ class GridHead(nn.Module):
         # predicted heatmap with fused features
         x2 = torch.cat(x_so, dim=1)
         x2 = self.deconv1(x2)
-        x2 = F.relu(self.norm1(x2), inplace=True)
+        x2 = F.relu(self.norm1(x2), inplace=False)
         heatmap = self.deconv2(x2)
 
         # predicted heatmap with original features (applicable during training)
         if self.training:
             x1 = x
             x1 = self.deconv1(x1)
-            x1 = F.relu(self.norm1(x1), inplace=True)
+            x1 = F.relu(self.norm1(x1), inplace=False)
             heatmap_unfused = self.deconv2(x1)
         else:
             heatmap_unfused = heatmap

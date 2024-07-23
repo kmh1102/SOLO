@@ -80,7 +80,7 @@ class FCNMaskHead(nn.Module):
             self.conv_out_channels
             if self.upsample_method == 'deconv' else upsample_in_channels)
         self.conv_logits = nn.Conv2d(logits_in_channel, out_channels, 1)
-        self.relu = nn.ReLU(inplace=True)
+        self.relu = nn.ReLU(inplace=False)
         self.debug_imgs = None
 
     def init_weights(self):

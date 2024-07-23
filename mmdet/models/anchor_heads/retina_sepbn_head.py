@@ -39,7 +39,7 @@ class RetinaSepBNHead(AnchorHead):
             num_classes, in_channels, anchor_scales=anchor_scales, **kwargs)
 
     def _init_layers(self):
-        self.relu = nn.ReLU(inplace=True)
+        self.relu = nn.ReLU(inplace=False)
         self.cls_convs = nn.ModuleList()
         self.reg_convs = nn.ModuleList()
         for i in range(self.num_ins):

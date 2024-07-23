@@ -27,7 +27,7 @@ class GARPNHead(GuidedAnchorHead):
 
     def forward_single(self, x):
         x = self.rpn_conv(x)
-        x = F.relu(x, inplace=True)
+        x = F.relu(x, inplace=False)
         (cls_score, bbox_pred, shape_pred,
          loc_pred) = super(GARPNHead, self).forward_single(x)
         return cls_score, bbox_pred, shape_pred, loc_pred

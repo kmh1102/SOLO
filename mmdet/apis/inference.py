@@ -273,7 +273,7 @@ def show_result_ins(img,
         if cur_mask.sum() == 0:
             continue
         color_mask = color_masks[idx]
-        cur_mask_bool = cur_mask.astype(np.bool)
+        cur_mask_bool = cur_mask.astype(np.bool_)
         img_show[cur_mask_bool] = img[cur_mask_bool] * 0.5 + color_mask * 0.5
 
         cur_cate = cate_label[idx]

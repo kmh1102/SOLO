@@ -37,7 +37,7 @@ class ContextBlock(nn.Module):
             self.channel_add_conv = nn.Sequential(
                 nn.Conv2d(self.inplanes, self.planes, kernel_size=1),
                 nn.LayerNorm([self.planes, 1, 1]),
-                nn.ReLU(inplace=True),  # yapf: disable
+                nn.ReLU(inplace=False),  # yapf: disable
                 nn.Conv2d(self.planes, self.inplanes, kernel_size=1))
         else:
             self.channel_add_conv = None
@@ -45,7 +45,7 @@ class ContextBlock(nn.Module):
             self.channel_mul_conv = nn.Sequential(
                 nn.Conv2d(self.inplanes, self.planes, kernel_size=1),
                 nn.LayerNorm([self.planes, 1, 1]),
-                nn.ReLU(inplace=True),  # yapf: disable
+                nn.ReLU(inplace=False),  # yapf: disable
                 nn.Conv2d(self.planes, self.inplanes, kernel_size=1))
         else:
             self.channel_mul_conv = None

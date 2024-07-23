@@ -59,11 +59,11 @@ class SSDVGG(VGG):
             str(len(self.features)),
             nn.Conv2d(512, 1024, kernel_size=3, padding=6, dilation=6))
         self.features.add_module(
-            str(len(self.features)), nn.ReLU(inplace=True))
+            str(len(self.features)), nn.ReLU(inplace=False))
         self.features.add_module(
             str(len(self.features)), nn.Conv2d(1024, 1024, kernel_size=1))
         self.features.add_module(
-            str(len(self.features)), nn.ReLU(inplace=True))
+            str(len(self.features)), nn.ReLU(inplace=False))
         self.out_feature_indices = out_feature_indices
 
         self.inplanes = 1024
@@ -100,7 +100,7 @@ class SSDVGG(VGG):
             if i in self.out_feature_indices:
                 outs.append(x)
         for i, layer in enumerate(self.extra):
-            x = F.relu(layer(x), inplace=True)
+            x = F.relu(layer(x), inplace=False)
             if i % 2 == 1:
                 outs.append(x)
         outs[0] = self.l2_norm(outs[0])

@@ -141,7 +141,7 @@ class DeformRoIPoolingPack(DeformRoIPooling):
                 seq.append(nn.Linear(ic, oc))
                 ic = oc
                 if i < self.num_offset_fcs - 1:
-                    seq.append(nn.ReLU(inplace=True))
+                    seq.append(nn.ReLU(inplace=False))
             self.offset_fc = nn.Sequential(*seq)
             self.offset_fc[-1].weight.data.zero_()
             self.offset_fc[-1].bias.data.zero_()
@@ -204,7 +204,7 @@ class ModulatedDeformRoIPoolingPack(DeformRoIPooling):
                 offset_fc_seq.append(nn.Linear(ic, oc))
                 ic = oc
                 if i < self.num_offset_fcs - 1:
-                    offset_fc_seq.append(nn.ReLU(inplace=True))
+                    offset_fc_seq.append(nn.ReLU(inplace=False))
             self.offset_fc = nn.Sequential(*offset_fc_seq)
             self.offset_fc[-1].weight.data.zero_()
             self.offset_fc[-1].bias.data.zero_()
@@ -219,7 +219,7 @@ class ModulatedDeformRoIPoolingPack(DeformRoIPooling):
                 mask_fc_seq.append(nn.Linear(ic, oc))
                 ic = oc
                 if i < self.num_mask_fcs - 1:
-                    mask_fc_seq.append(nn.ReLU(inplace=True))
+                    mask_fc_seq.append(nn.ReLU(inplace=False))
                 else:
                     mask_fc_seq.append(nn.Sigmoid())
             self.mask_fc = nn.Sequential(*mask_fc_seq)

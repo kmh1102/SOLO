@@ -1,4 +1,6 @@
 from __future__ import division
+import sys
+sys.path.append('E:\\PyCharm 2022.2\\project\\SOLO')
 import argparse
 import os
 import os.path as osp
@@ -15,7 +17,8 @@ from mmdet.datasets import build_dataset
 from mmdet.models import build_detector
 from mmdet.utils import get_root_logger
 
-
+# 启用异常检测
+torch.autograd.set_detect_anomaly(True)
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a detector')
     parser.add_argument('config', help='train config file path')

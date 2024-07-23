@@ -61,7 +61,7 @@ class ATSSHead(AnchorHead):
         self.loss_centerness = build_loss(loss_centerness)
 
     def _init_layers(self):
-        self.relu = nn.ReLU(inplace=True)
+        self.relu = nn.ReLU(inplace=False)
         self.cls_convs = nn.ModuleList()
         self.reg_convs = nn.ModuleList()
         for i in range(self.stacked_convs):
